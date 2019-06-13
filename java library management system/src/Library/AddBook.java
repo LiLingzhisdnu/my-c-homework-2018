@@ -155,7 +155,7 @@ public class AddBook extends JFrame implements ActionListener {
 			}
 
 			// 将书本信息存入书本信息文件中
-			BooksFileOpe.updateCustomer(ModifyBookNume1, type, name, author, press, price, loan);
+			BooksFileOpe.updateCustomer(ModifyBookNume1, type, name, author, press, price, loan+"%0");
 			// 将图书编号存入指定文件
 			BooksFileOpe.saveBookNum(ModifyBookNume1);
 			JOptionPane.showMessageDialog(this, "恭喜您，添加成功！");

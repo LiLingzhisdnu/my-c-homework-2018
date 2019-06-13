@@ -140,7 +140,7 @@ public class ModifyBook extends JFrame implements ActionListener {
 			jtBookPress.setText("");
 			jtBookPrice.setText("");
 			No.setSelected(true);
-			jtBookType.setSelectedIndex(0);// 选中第一个班级（计算机科学与技术一班）
+			jtBookType.setSelectedIndex(0);// 选中第一个班级（
 
 		}
 		// 修改按钮
@@ -159,7 +159,7 @@ public class ModifyBook extends JFrame implements ActionListener {
 			}
 
 			BooksFileOpe.getInfoByAccount(bookNum);
-			BooksFileOpe.updateCustomer(bookNum, type, name, author, press, price, loan);
+			BooksFileOpe.updateCustomer(bookNum, type, name, author, press, price, loan+"%0");
 			JOptionPane.showMessageDialog(this, "恭喜您，书本信息修改成功！");
 			this.dispose();
 			new AdminFunction();

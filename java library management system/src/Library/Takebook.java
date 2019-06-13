@@ -12,6 +12,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -32,11 +34,12 @@ public class Takebook extends JFrame implements ActionListener {
 	private JButton btnModify, btnReset, btnCancel;
 	// 是否借出
 	private JRadioButton Yes, No;
-	private String bookNum;
+	private String bookNum,NNN;
 
 	// 创建窗口
-	public Takebook(String bN) {
+	public Takebook(String bN,String NN) {
 		bookNum = bN;
+		NNN=NN;
 
 		this.setTitle("图书编号：" + bookNum);
 
@@ -106,12 +109,17 @@ public class Takebook extends JFrame implements ActionListener {
 		} 
 		//修改按钮
 		else if (jb == btnModify) {
-
-			String loan = Yes.isSelected() ? "已借出" : "未借出";
+			SimpleDateFormat df = new SimpleDateFormat("MM-dd");//设置日期格式
+			String loan = Yes.isSelected() ? User.num+"%"+df.format(new Date()): "未借出"+"%0";
 			BooksFileOpe.getInfoByAccount(bookNum);
-			BooksFileOpe.getInfoByAccount(bookNum);
-			BooksFileOpe.updateCustomer(bookNum, Books.bookType, Books.bookName, Books.bookAuthor, Books.bookPress, Books.bookPrice, loan);
-			JOptionPane.showMessageDialog(this, "恭喜您，书本借还成功！");
+			String[] infos = Books.bookLoan.split("%");
+			if(NNN.equals(infos[0])||infos[0].equals("未借出"))
+			{
+				BooksFileOpe.updateCustomer(bookNum, Books.bookType, Books.bookName, Books.bookAuthor,Books.bookPress, Books.bookPrice, loan);
+				JOptionPane.showMessageDialog(this, "恭喜您，书本借还成功！");
+			}
+			else
+				JOptionPane.showMessageDialog(this, "其他人正在使用该书，借还失败！");
 			this.dispose();
 			new UserFunction();
 		} 

@@ -111,7 +111,7 @@ public class UserFunction extends Frame implements ActionListener {
 			this.dispose();
 			String ModifyBookNum = JOptionPane.showInputDialog("请输入您要借还的书本编号：");
 			if (BooksFileOpe.findBook(ModifyBookNum)) {
-				new Takebook(ModifyBookNum);
+				new Takebook(ModifyBookNum,User.num);
 				return;
 			}
 			JOptionPane.showMessageDialog(this, "抱歉，系统中没有您要借还的书本信息！");

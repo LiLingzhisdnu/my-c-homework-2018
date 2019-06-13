@@ -31,27 +31,31 @@ public class ShowBook extends Frame implements ActionListener {
 	JFrame frame = new JFrame("书库");
 
 	public ShowBook() {
-		final Object[] columnNames = { "图书编号", "图书类型", "书名", "作者", "出版社", "价格", "是否借出" };// 表头
+		final Object[] columnNames = { "图书编号", "图书类型", "书名", "作者", "出版社", "价格", "是否借出","是否借出"};// 表头
 
 		// 用一个可变数组存储所有的图书编号
-		ArrayList allbookNum = new ArrayList();
+		ArrayList<Object> allbookNum = new ArrayList<>();
 		allbookNum = BooksFileOpe.getAllbookNum(allbookNum);
 
-		Object[][] rowData = new Object[allbookNum.size()][7];
+		String[][] rowData = new String[allbookNum.size()][8];
 		for (int i = 1; i < allbookNum.size(); i++) {
 			BooksFileOpe.getInfoByAccount((String) allbookNum.get(i));
-			rowData[i][0] = allbookNum.get(i);
+			String[] infos = Books.bookLoan.split("%");
+			rowData[i][0] = (String)allbookNum.get(i);
 			rowData[i][1] = Books.bookType;
 			rowData[i][2] = Books.bookName;
 			rowData[i][3] = Books.bookAuthor;
-			rowData[i][4] = Books.bookLoan;
+			rowData[i][4] = Books.bookPress;
 			rowData[i][5] = Books.bookPrice;
-			rowData[i][6] = Books.bookPress;
+			rowData[i][6] = infos[0];
+			rowData[i][7] = infos[1];
+			
+	
 		}
 
 		JTable friends = new JTable(rowData, columnNames);
 
-		friends.setPreferredScrollableViewportSize(new Dimension(900, 800));// 设置表格的大小
+		friends.setPreferredScrollableViewportSize(new Dimension(1600, 800));// 设置表格的大小
 
 		friends.setRowHeight(30);// 设置每行的高度为30
 		friends.setRowMargin(5);// 设置相邻两行单元格的距离
@@ -77,6 +81,7 @@ public class ShowBook extends Frame implements ActionListener {
 
 		friends.setEnabled(false);// 设置表格为不可编辑
 		friends.getTableHeader().setReorderingAllowed(false);// 设置表头不可移动
+		friends.getToolTipText();
 
 		// JScrollPane pane1 = new JScrollPane(example1);
 		// JScrollPane pane2 = new JScrollPane(example2);
@@ -84,7 +89,7 @@ public class ShowBook extends Frame implements ActionListener {
 
 		JPanel panel = new JPanel(new GridLayout(0, 1));
 
-		panel.setPreferredSize(new Dimension(900, 500));
+		panel.setPreferredSize(new Dimension(1600, 800));
 
 		panel.setBackground(Color.black);
 		// panel.add(pane1);
@@ -95,7 +100,7 @@ public class ShowBook extends Frame implements ActionListener {
 		frame.setContentPane(panel);
 		frame.pack();
 		GUIUtil.toCenter(frame);// 使窗口居中
-		frame.setSize(900, 600);
+		frame.setSize(1700, 800);
 		frame.show();
 		frame.setBackground(Color.orange);
 

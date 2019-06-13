@@ -170,7 +170,7 @@ public class BooksFileOpe {
 	}
 
 	// 获取文件中所有已注册的图书编号，以数组返回
-	public static ArrayList getAllbookNum(ArrayList allbookNum) {
+	public static ArrayList<Object> getAllbookNum(ArrayList<Object> allbookNum) {
 		try {
 			FileReader file = new FileReader(filebookNum);
 			BufferedReader buff = new BufferedReader(file);
@@ -198,17 +198,17 @@ public class BooksFileOpe {
 			Books.bookType = infos[0];
 			Books.bookName = infos[1];
 			Books.bookAuthor = infos[2];
-			Books.bookLoan = infos[3];
+			Books.bookPress = infos[3];
 			Books.bookPrice = infos[4];
-			Books.bookPress = infos[5];
+			Books.bookLoan = infos[5];
 		}
 	}
 
 	// 修改信息
 	public static void updateCustomer(String bookNum, String bookType, String bookName, String bookAuthor,
-			String bookLoan, String bookPrice, String bookPress) {
+			String bookPress, String bookPrice, String bookLoan) {
 		pps.setProperty(bookNum,
-				bookType + "#" + bookName + "#" + bookAuthor + "#" + bookLoan + "#" + bookPrice + "#" + bookPress);
+				bookType + "#" + bookName + "#" + bookAuthor + "#" + bookPress + "#" + bookPrice + "#" + bookLoan);
 		listInfo();
 		// writeBookNum(bookNumFile,bookNum);
 	}

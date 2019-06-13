@@ -174,7 +174,6 @@ public class Register extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this, "两次输入的密码不同，请您重新输入！");
 				return;
 			}
-
 			FileOpe.getInfoByAccount(num);
 			if (User.num != "#") {// 判断用户是否已经注册过
 				JOptionPane.showMessageDialog(this, "该用户已经注册，请您直接登录或者重新注册！");
